@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Less & Better | 時令．五味</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue-light: #ddeeff;
+    --blue-pale: #eef4fb;
+    --blue-border: #b8d4ee;
+    --white: #ffffff;
+    --gray-light: #f5f5f5;
+    --gray-border: #d0d0d0;
+    --gray-text: #888;
+    --black: #111;
+    --green-main: #3a8c4e;
+    --green-light: #5cb870;
+    --green-dark: #256637;
+    --green-pale: #e6f4e9;
+    --red-btn: #d0021b;
+    --red-btn-dark: #9b0014;
+    --max-w: 1080px;
+  }
+
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", Arial, sans-serif;
+    background: #c8dff0;
+    color: var(--black);
+    min-height: 100vh;
+  }
+
+  /* ─── OUTER WRAPPER ─── */
+  .site-wrap {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    background: var(--white);
+    box-shadow: 0 0 0 1px var(--blue-border);
+  }
+
+  /* ════════════════════════════════
+     HEADER
+  ════════════════════════════════ */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--blue-pale);
+    border-bottom: 1px solid var(--blue-border);
+    width: 100%;
+  }
+  .header-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 10px 18px;
+    gap: 0;
+  }
+
+  /* (一) LOGO */
+  .logo-area {
+    flex-shrink: 0;
+  }
+  .logo-svg {
+    width: clamp(40px, 6vw, 60px);
+    height: clamp(40px, 6vw, 60px);
+    display: block;
+  }
+
+  /* (二) SLOGAN */
+  .slogan-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 clamp(8px, 2vw, 20px);
+    margin-left: clamp(6px, 1.5vw, 16px);
+    border-left: 1px solid #bbb;
+    gap: 2px;
+  }
+  .slogan-top {
+    font-size: clamp(12px, 1.8vw, 16px);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--black);
+    white-space: nowrap;
+  }
+  .slogan-divider {
+    width: 60%;
+    height: 1px;
+    background: #ccc;
+    margin: 1px auto;
+  }
+  .slogan-bottom {
+    font-size: clamp(10px, 1.4vw, 13px);
+    color: #444;
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+    font-family: Arial, sans-serif;
+  }
+
+  /* (三) TITLE */
+  .title-area {
+    flex: 1;
+    text-align: center;
+    padding: 0 clamp(8px, 2vw, 20px);
+  }
+  .title-area h1 {
+    font-size: clamp(16px, 3vw, 28px);
+    font-weight: 900;
+    color: var(--black);
+    letter-spacing: 0.04em;
+    font-family: Arial, "Microsoft JhengHei", sans-serif;
+    white-space: nowrap;
+  }
+
+  /* (四) NAV */
+  nav.header-nav {
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+  nav.header-nav a {
+    font-size: 14px;
+    color: var(--green-dark);
+    text-decoration: none;
+    border: 1px solid var(--green-dark);
+    padding: 5px 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    transition: background 0.2s;
+    font-family: "Microsoft JhengHei", Arial, sans-serif;
+  }
+  nav.header-nav a:hover { background: var(--green-pale); }
+  @media (max-width: 600px) {
+    nav.header-nav { display: none; }
+    .title-area h1 { font-size: clamp(14px, 4vw, 20px); }
+  }
+
+  /* ════════════════════════════════
+     MAIN
+  ════════════════════════════════ */
+  main {
+    display: flex;
+    align-items: stretch;
+    background: var(--white);
+  }
+
+  /* ── A ZONE ── */
+  .zone-a {
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--blue-border);
+    overflow-y: auto;
+    max-height: 600px; /* scroll within */
+  }
+
+  /* A1 Image */
+  .a1-img {
+    width: 100%;
+    aspect-ratio: 9/16;
+    min-height: 360px;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* A2 Text */
+  .a2-text {
+    padding: 20px 16px;
+    background: var(--gray-light);
+    flex: 1;
+  }
+  .a2-text h2 {
+    font-size: clamp(15px, 2.2vw, 20px);
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 14px;
+    color: var(--green-dark);
+    letter-spacing: 0.06em;
+  }
+  .a2-text ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .a2-text ul li {
+    text-align: center;
+    font-size: clamp(13px, 1.6vw, 15px);
+    color: #333;
+    line-height: 1.7;
+  }
+  .a2-text ul li:nth-child(odd) { font-weight: 600; }
+
+  /* ── B ZONE ── */
+  .zone-b {
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+    height: 600px; /* match A zone visible height */
+  }
+
+  /* B1 Wheel */
+  .b1-wheel {
+    flex: 1;
+    background: var(--green-pale);
+    padding: 12px 10px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    overflow: hidden;
+  }
+  .b1-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 6px;
+  }
+  .b1-title {
+    font-size: clamp(10px, 1.3vw, 13px);
+    font-weight: 700;
+    color: var(--green-dark);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .b1-result {
+    flex: 1;
+    text-align: center;
+    font-size: clamp(11px, 1.4vw, 14px);
+    font-weight: 700;
+    color: var(--red-btn);
+    min-height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .spin-btn {
+    background: linear-gradient(145deg, #ff3333, #b30012);
+    color: #fff;
+    border: none;
+    padding: 7px 14px;
+    border-radius: 6px;
+    font-size: clamp(11px, 1.3vw, 13px);
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 3px 3px 8px rgba(180,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.25);
+    flex-shrink: 0;
+    transition: transform 0.1s, box-shadow 0.1s;
+    font-family: "Microsoft JhengHei", Arial, sans-serif;
+  }
+  .spin-btn:active {
+    transform: translateY(2px);
+    box-shadow: 1px 1px 4px rgba(180,0,0,0.45);
+  }
+
+  /* Canvas wheel */
+  #wheelCanvas {
+    display: block;
+    max-width: 100%;
+    max-height: calc(100% - 50px);
+    margin: 0 auto;
+    flex: 1;
+  }
+
+  /* B2 CTA */
+  .b2-cta {
+    padding: 14px 10px;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid var(--blue-border);
+    border-bottom: 1px solid var(--blue-border);
+    flex-shrink: 0;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: linear-gradient(145deg, #ff2233, #aa0011);
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 32px;
+    border-radius: 8px;
+    font-size: clamp(14px, 2vw, 18px);
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    box-shadow: 4px 6px 16px rgba(180,0,20,0.45), inset 0 1px 0 rgba(255,255,255,0.2);
+    transition: transform 0.15s, box-shadow 0.15s;
+    font-family: "Microsoft JhengHei", Arial, sans-serif;
+  }
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 6px 10px 20px rgba(180,0,20,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+
+  /* B3 Company Info */
+  .b3-info {
+    padding: 14px 16px;
+    background: var(--gray-light);
+    flex-shrink: 0;
+    overflow-y: auto;
+  }
+  .b3-info p {
+    font-size: clamp(11px, 1.3vw, 13px);
+    line-height: 1.9;
+    color: #444;
+  }
+  .b3-info .company-name {
+    font-weight: 700;
+    color: var(--green-dark);
+    font-size: clamp(12px, 1.5vw, 14px);
+  }
+  .b3-divider {
+    border: none;
+    border-top: 1px dashed var(--gray-border);
+    margin: 8px 0;
+  }
+
+  /* ── RESPONSIVE main ── */
+  @media (max-width: 680px) {
+    main { flex-direction: column; }
+    .zone-a { max-height: none; border-right: none; border-bottom: 1px solid var(--blue-border); }
+    .zone-b { height: auto; }
+    .b1-wheel { min-height: 300px; }
+    #wheelCanvas { max-height: 260px; }
+  }
+
+  /* ════════════════════════════════
+     FOOTER
+  ════════════════════════════════ */
+  footer {
+    background: var(--blue-pale);
+    border-top: 1px solid var(--blue-border);
+  }
+  .footer-c {
+    padding: 12px 18px;
+    text-align: center;
+    font-size: clamp(11px, 1.4vw, 13px);
+    color: #555;
+    border-bottom: 1px solid var(--blue-border);
+  }
+  .footer-c a {
+    color: var(--green-dark);
+    text-decoration: underline;
+  }
+  .footer-d {
+    padding: 8px 18px;
+    text-align: center;
+    font-size: 12px;
+    color: #888;
+  }
+</style>
+</head>
+<body>
+
+<!-- ════ HEADER ════ -->
+<div class="site-wrap">
+<header>
+  <div class="header-inner">
+
+    <!-- (一) LOGO -->
+    <div class="logo-area">
+      <svg class="logo-svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+        <rect width="60" height="60" fill="#000"/>
+        <rect x="6" y="6" width="20" height="20" fill="#fff"/>
+        <rect x="34" y="34" width="20" height="20" fill="#fff"/>
+      </svg>
+    </div>
+
+    <!-- (二) SLOGAN -->
+    <div class="slogan-area">
+      <div class="slogan-top">《時令．五味》</div>
+      <div class="slogan-divider"></div>
+      <div class="slogan-bottom">pH | imBalance</div>
+    </div>
+
+    <!-- (三) TITLE -->
+    <div class="title-area">
+      <h1>Less &amp; Better</h1>
+    </div>
+
+    <!-- (四) NAV -->
+    <nav class="header-nav">
+      <a href="https://forms.gle/WXLVZSwKF3yYTGkCA" target="_blank" rel="noopener">與我聯絡</a>
+    </nav>
+
+  </div>
+</header>
+
+<!-- ════ MAIN ════ -->
+<main>
+
+  <!-- A ZONE -->
+  <section class="zone-a" aria-label="產品圖片與介紹">
+
+    <!-- A1 -->
+    <article class="a1-image">
+      <img class="a1-img"
+           src="https://drive.google.com/thumbnail?id=10ZaC8n7X6zrF1B5iZQdjcpXcBhJmJ9AK&sz=w1200"
+           alt="小黃瓜產品圖"
+           loading="lazy">
+    </article>
+
+    <!-- A2 -->
+    <article class="a2-text">
+      <h2>小農溫室栽培、誠徵團購主</h2>
+      <ul>
+        <li>無毒認證、新鮮採收</li>
+        <li>吃得安心、脆的過癮</li>
+        <li>陽光大地、天然滋味</li>
+        <li>透明塑膠盒精緻包裝</li>
+        <li>每盒 600g／十盒免運</li>
+      </ul>
+    </article>
+
+  </section>
+
+  <!-- B ZONE -->
+  <section class="zone-b" aria-label="活動轉盤與聯繫">
+
+    <!-- B1 Wheel -->
+    <article class="b1-wheel">
+      <div class="b1-top-row">
+        <div class="b1-title">我沒有小黃瓜選擇障礙</div>
+        <div class="b1-result" id="wheelResult">——</div>
+        <button class="spin-btn" id="spinBtn" onclick="spinWheel()">旋轉！</button>
+      </div>
+      <canvas id="wheelCanvas"></canvas>
+    </article>
+
+    <!-- B2 CTA -->
+    <article class="b2-cta">
+      <a class="cta-btn" href="https://forms.gle/WXLVZSwKF3yYTGkCA" target="_blank" rel="noopener">
+        成為揪團主
+      </a>
+    </article>
+
+    <!-- B3 Company Info -->
+    <article class="b3-info">
+      <p class="company-name">永濬農業科技有限公司</p>
+      <p>統編：00125526</p>
+      <p>地址：彰化縣芳苑鄉草湖村新興巷31號</p>
+      <p>負責人：許晏淩</p>
+      <hr class="b3-divider">
+      <p class="company-name">無毒認證機構 全民儲炭股份有限公司</p>
+      <p>統編：83275882</p>
+      <p>地址：臺中市南屯區文心路一段378號9樓之8</p>
+    </article>
+
+  </section>
+
+</main>
+
+<!-- ════ FOOTER ════ -->
+<footer>
+  <div class="footer-c">
+    飛魚行銷工作站 | 新北市新店區北新路一段64巷11號四樓 |
+    <a href="https://forms.gle/WXLVZSwKF3yYTGkCA" target="_blank" rel="noopener">與我聯繫</a>
+  </div>
+  <div class="footer-d">Copyright &copy; 2026</div>
+</footer>
+</div><!-- end site-wrap -->
+
+<!-- ════ WHEEL SCRIPT ════ -->
+<script>
+(function(){
+  const items = ['經典涼拌','蒜香雞丁','古早味醬瓜','韓式味增','柚香花枝圈','豆皮蝦仁'];
+  const n = items.length;
+  const canvas = document.getElementById('wheelCanvas');
+  const ctx = canvas.getContext('2d');
+  const resultEl = document.getElementById('wheelResult');
+  const btn = document.getElementById('spinBtn');
+
+  // Color palette – greens
+  const greens = ['#2e7d32','#388e3c','#43a047','#4caf50','#66bb6a','#81c784'];
+
+  let currentAngle = 0;
+  let spinning = false;
+
+  function resize() {
+    const container = canvas.parentElement;
+    const topRow = container.querySelector('.b1-top-row');
+    const availH = container.clientHeight - topRow.offsetHeight - 20;
+    const availW = container.clientWidth - 20;
+    const size = Math.max(80, Math.min(availW, availH));
+    canvas.width = size;
+    canvas.height = size;
+    draw(currentAngle);
+  }
+
+  function draw(angle) {
+    const cx = canvas.width / 2;
+    const cy = canvas.height / 2;
+    const r = Math.min(cx, cy) - 4;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const sliceAngle = (2 * Math.PI) / n;
+
+    for (let i = 0; i < n; i++) {
+      const start = angle + i * sliceAngle;
+      const end = start + sliceAngle;
+
+      // Slice
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.arc(cx, cy, r, start, end);
+      ctx.closePath();
+      ctx.fillStyle = greens[i % greens.length];
+      ctx.fill();
+      ctx.strokeStyle = '#fff';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      // Label
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(start + sliceAngle / 2);
+      ctx.textAlign = 'right';
+      ctx.fillStyle = '#fff';
+      const fontSize = Math.max(9, Math.min(13, r * 0.13));
+      ctx.font = `bold ${fontSize}px "Microsoft JhengHei", Arial, sans-serif`;
+      ctx.fillText(items[i], r - 8, fontSize * 0.35);
+      ctx.restore();
+    }
+
+    // Center circle
+    ctx.beginPath();
+    ctx.arc(cx, cy, r * 0.1, 0, 2 * Math.PI);
+    ctx.fillStyle = '#fff';
+    ctx.fill();
+
+    // Pointer (top)
+    ctx.save();
+    ctx.translate(cx, cy - r + 2);
+    ctx.beginPath();
+    ctx.moveTo(0, -12);
+    ctx.lineTo(8, 4);
+    ctx.lineTo(-8, 4);
+    ctx.closePath();
+    ctx.fillStyle = '#d0021b';
+    ctx.shadowColor = 'rgba(0,0,0,0.4)';
+    ctx.shadowBlur = 4;
+    ctx.fill();
+    ctx.restore();
+  }
+
+  window.spinWheel = function() {
+    if (spinning) return;
+    spinning = true;
+    btn.disabled = true;
+    resultEl.textContent = '轉動中…';
+
+    const totalRotation = (Math.PI * 2 * (5 + Math.random() * 5));
+    const duration = 3000 + Math.random() * 1000;
+    const startAngle = currentAngle;
+    const startTime = performance.now();
+
+    function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+    function step(now) {
+      const elapsed = now - startTime;
+      const t = Math.min(elapsed / duration, 1);
+      currentAngle = startAngle + totalRotation * easeOut(t);
+      draw(currentAngle);
+      if (t < 1) {
+        requestAnimationFrame(step);
+      } else {
+        spinning = false;
+        btn.disabled = false;
+        const sliceAngle = (2 * Math.PI) / n;
+        // Pointer is at top = -PI/2; find which slice is under pointer
+        const normalised = (((-currentAngle % (2*Math.PI)) + (2*Math.PI)) % (2*Math.PI));
+        const idx = Math.floor(normalised / sliceAngle) % n;
+        resultEl.textContent = '🎉 ' + items[idx];
+      }
+    }
+    requestAnimationFrame(step);
+  };
+
+  const ro = new ResizeObserver(resize);
+  ro.observe(canvas.parentElement);
+  resize();
+})();
+</script>
+</body>
+</html>
